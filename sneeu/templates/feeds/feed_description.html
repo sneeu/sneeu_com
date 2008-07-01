@@ -1,0 +1,6 @@
+{% load typogrify %}
+{% if obj.standfirst %}
+	<p><em>{{ obj.standfirst|safe }}</em> <a href="{{ obj.get_absolute_url }}">Read more &hellip;</a></p>
+{% else %}
+	{{ obj.copy|typogrify|safe }}
+{% endif %}

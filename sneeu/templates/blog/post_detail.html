@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+
+{% load iso typogrify %}
+
+
+{% block content %}
+
+	<div class="hentry">
+		{% with object as post %}
+			<h2><a class="entry-title" rel="bookmark" href="{{ post.get_absolute_url }}">{{ post.headline|typogrify|safe }}</a><abbr class="published updated" title="{{ post.created|iso8601 }}">{{ post.created|date:"d/N/Y" }}</abbr></h2>
+			<div class="entry-content">
+				{% if post.standfirst %}<p class="standfirst">{{ post.standfirst|safe }}</p>{% endif %}
+				{{ post.copy|typogrify|safe }}
+			</div>
+		{% endwith %}
+	</div>
+
+{% endblock %}
