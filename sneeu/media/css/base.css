@@ -8,11 +8,14 @@ body {
 	width: 24em;
 }
 a {
-	color: #06f;
+	color: #03f;
 	text-decoration: none;
 }
+a:visited {
+	color: #60c;
+}
 a:hover {
-	color: #c12;
+	color: #c33;
 }
 h1 {
 	color: #999;
@@ -37,6 +40,11 @@ ol {
 ul {
 	list-style: disc;
 }
+blockquote {
+	color: #666;
+	font-style: italic;
+	padding: 0 0 1.5em 3em;
+}
 .hfeed {
 	list-style: none;
 }
@@ -55,6 +63,12 @@ ul {
 .entry-content {
 	text-align: left;
 }
+.lyric p {
+	padding: 0;
+}
 .entry-content .standfirst {
 	font-style: italic;
+}
+.author {
+	display: none;
 }

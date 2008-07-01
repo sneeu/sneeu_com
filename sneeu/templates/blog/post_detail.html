@@ -14,6 +14,7 @@
 				{% if post.standfirst %}<p class="standfirst">{{ post.standfirst|safe }}</p>{% endif %}
 				{{ post.copy|typogrify|safe }}
 			</div>
+			<p class="author vcard"><a href="{% url apps.core.views.john %}" class="url"><abbr class="fn" title="John Sutherland">John</abbr></a></p>
 		{% endwith %}
 	</div>
 
