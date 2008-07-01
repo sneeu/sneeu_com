@@ -9,7 +9,8 @@
 	<ol class="hfeed">
 		{% for post in object_list %}
 			<li class="hentry">
-				<h2><a class="entry-title" rel="bookmark" href="{{ post.get_absolute_url }}">{{ post.headline|typogrify|safe }}</a><abbr class="published updated" title="{{ post.created|iso8601 }}">{{ post.created|date:"d/N/Y" }}</abbr></h2>
+				<h2><a class="entry-title" rel="bookmark" href="{{ post.get_absolute_url }}">{{ post.headline|typogrify|safe }}</a></h2>
+				<p class="meta"><abbr class="published updated" title="{{ post.created|iso8601 }}">{{ post.created|date:"d/N/Y" }}</abbr></p>
 				<div class="entry-content">
 					{% if post.standfirst %}
 						<p class="standfirst">{{ post.standfirst|safe }} <a href="{{ post.get_absolute_url }}">Read more &hellip;</a></p>
