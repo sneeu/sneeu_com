@@ -5,7 +5,8 @@ body {
 	color: #444;
 	font: 100%/1.5em "Georgia",sans-serif;
 	margin: 3em auto;
-	width: 24em;
+	max-width: 24em;
+	padding: 0 1.5em;
 }
 a {
 	color: #03f;
