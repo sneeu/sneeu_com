@@ -1,14 +1,17 @@
+from django.core.paginator import QuerySetPaginator
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 
 from models import Post
 
 
-def post_list(request, page=1):
-    posts = Post.objects.all()
+def post_list(request):
+    page_no = request.GET.get('page', 1)
+    paginator = QuerySetPaginator(Post.objects.all(), 10)
 
     context = {
-        'object_list': posts,
+        'paginator': paginator,
+        'page': paginator.page(page_no),
     }
 
     return render_to_response('blog/post_list.html', context,

@@ -63,12 +63,13 @@ blockquote {
 .entry-content {
 	text-align: left;
 }
-.lyric p {
-	padding: 0;
-}
 .entry-content .standfirst {
 	font-style: italic;
 }
 .author {
 	display: none;
+}
+.paginator {
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	text-align: center;
 }

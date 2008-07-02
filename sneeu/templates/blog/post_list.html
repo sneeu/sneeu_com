@@ -5,14 +5,17 @@
 
 
 {% block extrahead %}
-	<link rel="alternate" type="application/rss+xml" title="Feed" href="/blog/feed/" />
+	<link href="/blog/feed/" rel="alternate" type="application/rss+xml" title="Feed" />
+
+	{% if page.has_previous %}<link href="{% ifequal page.previous_page_number 1 %}.{% else %}?page={{ page.previous_page_number }}{% endifequal %}" rel="prev" />{% endif %}
+	{% if page.has_next %}<link href="?page={{ page.next_page_number }}" rel="next" />{% endif %}
 {% endblock %}
 
 
 {% block content %}
 
 	<ol class="hfeed">
-		{% for post in object_list %}
+		{% for post in page.object_list %}
 			<li class="hentry">
 				<h2><a class="entry-title" rel="bookmark" href="{{ post.get_absolute_url }}">{{ post.headline|typogrify|safe }}</a></h2>
 				<p class="meta"><abbr class="published updated" title="{{ post.created|iso8601 }}">{{ post.created|date:"d/N/Y" }}</abbr></p>
@@ -27,5 +30,12 @@
 			</li>
 		{% endfor %}
 	</ol>
+
+	{% if page.has_next or page.has_previous %}
+		<p class="paginator">
+			{% if page.has_previous %}<a class="previous" href="{% ifequal page.previous_page_number 1 %}.{% else %}?page={{ page.previous_page_number }}{% endifequal %}" rel="prev" title="Newer">&larr;</a>{% endif %}
+			{% if page.has_next %}<a class="next" href="?page={{ page.next_page_number }}" rel="next" title="Older">&rarr;</a>{% endif %}
+		</p>
+	{% endif %}
 
 {% endblock %}
