@@ -3,7 +3,7 @@
 body {
 	background: #fff;
 	color: #444;
-	font: 100%/1.5em "Georgia",serif;
+	font: 100%/1.5em "Georgia",sans-serif;
 	margin: 3em auto;
 	width: 24em;
 }
@@ -44,6 +44,11 @@ blockquote {
 	color: #666;
 	font-style: italic;
 	padding: 0 0 1.5em 3em;
+}
+.caps {
+	font-variant: small-caps;
+	letter-spacing: 0.1em;
+	text-transform: lowercase;
 }
 .hfeed {
 	list-style: none;
