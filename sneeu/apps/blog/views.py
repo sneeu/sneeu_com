@@ -13,7 +13,6 @@ def post_list(request):
     if page_no == 1:
         cached_page = cache.get('/')
         if cached_page:
-            cached_page['X-Cache'] = 'Hit'
             return cached_page
 
     paginator = QuerySetPaginator(Post.objects.all(), 10)
@@ -42,6 +41,4 @@ def post_detail(request, year, month, slug):
             RequestContext(request))
 
         cache.set(request.path, response)
-    else:
-        response['X-Cache'] = 'Hit'
     return response

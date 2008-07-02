@@ -2,6 +2,7 @@ import datetime
 
 from django.contrib import admin
 from django.contrib.auth.models import User
+from django.core.cache import cache
 from django.core.urlresolvers import reverse
 from django.db import models
 
@@ -27,6 +28,8 @@ class Post(models.Model):
         if not self.pk:
             self.created = self.updated
         super(Post, self).save()
+        cache.delete(self.get_absolute_url())
+        cache.delete('/')
 
     @models.permalink
     def get_absolute_url(self):
