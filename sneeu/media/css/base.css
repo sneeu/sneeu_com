@@ -3,7 +3,7 @@
 body {
 	background: #fff;
 	color: #444;
-	font: 100%/1.5em "Georgia",sans-serif;
+	font: 100%/1.5em "Georgia","Times New Roman","Times",sans-serif;
 	margin: 3em auto;
 	max-width: 24em;
 	padding: 0 1.5em;
@@ -45,6 +45,9 @@ blockquote {
 	color: #666;
 	font-style: italic;
 	padding: 0 0 1.5em 3em;
+}
+code {
+	font: 100%/0.1em "Lucida Console","Monaco",monospace;
 }
 .caps {
 	font-variant: small-caps;
