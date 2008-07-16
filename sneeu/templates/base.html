@@ -9,18 +9,20 @@
 		Powered by Slicehost, Django, memcached, nginx, apache & S3
 		-->
 
+	<link href="/media/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 	<link href="{{ media_url }}css/reset.css" media="screen,projection" rel="stylesheet" type="text/css" />
 	<link href="{{ media_url }}css/base.css" media="screen,projection" rel="stylesheet" type="text/css" />
-	<link href="/media/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
 	{% block extrahead %}{% endblock %}
 
 </head>
 <body>
 
+	{% block body %}
 	<h1><a href="/">{{ site.name }}</a></h1>
 
 	{% block content %}{% endblock %}
+	{% endblock %}
 
 </body>
 </html>
