@@ -5,7 +5,7 @@ body {
 	color: #444;
 	font: 100%/1.5em "Georgia","Times New Roman","Times",sans-serif;
 	margin: 3em auto;
-	max-width: 24em;
+	width: 24em;
 	padding: 0 1.5em;
 }
 a {
@@ -49,6 +49,16 @@ blockquote {
 code {
 	font: 100%/0.1em "Lucida Console","Monaco",monospace;
 }
+q {
+	color: #666;
+	font-style: italic;
+}
+q:before {
+	content: "“";
+}
+q:after {
+	content: "”";
+}
 .caps {
 	font-variant: small-caps;
 	letter-spacing: 0.1em;
@@ -78,7 +88,22 @@ code {
 .author {
 	display: none;
 }
+.frame {
+	text-align: center;
+}
+.frame a img {
+	border: 1px solid #bbb;
+	padding: 1px;
+}
 .paginator {
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 	text-align: center;
+}
+.download_vcard a {
+	background: url(../img/hcard-download.png) no-repeat;
+	float: right;
+	height: 18px;
+	padding: 10px;
+	text-indent: -9999px;
+	width: 29px;
 }
