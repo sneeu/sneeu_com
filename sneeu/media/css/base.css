@@ -100,10 +100,13 @@ q:after {
 	text-align: center;
 }
 .download_vcard a {
-	background: url(../img/hcard-download.png) no-repeat;
+	background: url(../img/hcard-download.png) no-repeat center center;
 	float: right;
-	height: 18px;
-	padding: 10px;
+	height: 3em;
 	text-indent: -9999px;
-	width: 29px;
+	width: 3em;
+}
+.download_vcard a:hover {
+	border: 1px solid #ccc;
+	margin: -1px;
 }
