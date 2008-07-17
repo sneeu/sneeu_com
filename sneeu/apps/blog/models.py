@@ -37,4 +37,8 @@ class Post(models.Model):
             'month': str(self.created.month).zfill(2), 'slug': self.slug, }
 
 
-admin.site.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('headline', )}
+
+
+admin.site.register(Post, PostAdmin)
