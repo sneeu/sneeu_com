@@ -5,7 +5,7 @@
 
 
 {% block extrahead %}
-	<link href="/blog/feed/" rel="alternate" type="application/rss+xml" title="Feed" />
+	<link href="http://feeds.feedburner.com/sneeu" rel="alternate" type="application/rss+xml" title="Feed" />
 
 	{% if page.has_previous %}<link href="{% ifequal page.previous_page_number 1 %}.{% else %}?page={{ page.previous_page_number }}{% endifequal %}" rel="prev" />{% endif %}
 	{% if page.has_next %}<link href="?page={{ page.next_page_number }}" rel="next" />{% endif %}
