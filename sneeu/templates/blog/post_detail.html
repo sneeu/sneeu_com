@@ -34,6 +34,7 @@
 
 	{% if object.comments_open %}
 		<form action="{{ object.get_add_comment_url }}" method="post">
+			<p>Add you comment, URL is not&nbsp;required.</p>
 			{% field comment_form.author_name %}
 			{% field comment_form.author_url %}
 			{% field comment_form.copy %}
