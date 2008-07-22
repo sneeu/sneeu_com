@@ -1,6 +1,5 @@
 import datetime
 
-from django.contrib import admin
 from django.contrib.auth.models import User
 from django.core.cache import cache
 from django.core.urlresolvers import reverse
@@ -16,7 +15,7 @@ class Post(models.Model):
     standfirst = models.CharField(max_length=255, blank=True, null=True)
     copy = models.TextField(blank=True, null=True)
     published = models.BooleanField(default=False)
-    #allow_comments = models.BooleanField(default=True)
+    allow_comments = models.BooleanField(default=True)
 
     class Meta:
         ordering = ('-created', )
@@ -35,7 +34,12 @@ class Post(models.Model):
     @models.permalink
     def get_absolute_url(self):
         return 'post_detail', (), {'year': self.created.year,
-            'month': self.created.month, 'slug': self.slug, }
+            'month': self.created.month, 'slug': self.slug}
+
+    @models.permalink
+    def get_add_comment_url(self):
+        return 'add_comment', (), {'year': self.created.year,
+            'month': self.created.month, 'slug': self.slug}
 
     def _get_comments_open(self):
         expiry = self.created + datetime.timedelta(days=6 * 7)
@@ -49,7 +53,7 @@ class PostComment(models.Model):
     post = models.ForeignKey(Post)
     created = models.DateTimeField()
     author_name = models.CharField(max_length=30, verbose_name=u"Name")
-    author_url = models.URLField(verbose_name=u"URL")
+    author_url = models.URLField(verbose_name=u"URL", blank=True, null=True)
     copy = models.TextField(verbose_name=u"Comment")
 
     class Meta:
@@ -59,13 +63,8 @@ class PostComment(models.Model):
         if not self.pk:
             self.created = datetime.datetime.now()
         super(PostComment, self).save()
+        cache.delete(self.post.get_absolute_url())
+        cache.delete('/')
 
     def get_absolute_url(self):
-        return u'%s#%s' % (self.post.get_absolute_url(), self.pk)
-
-
-class PostAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('headline', )}
-
-
-admin.site.register(Post, PostAdmin)
+        return u'%s#c%s' % (self.post.get_absolute_url(), self.pk)

@@ -1,4 +1,7 @@
-from django import newforms as forms
+from django import forms
+
+
+from models import PostComment
 
 
 class AddPostCommentForm(forms.ModelForm):

@@ -5,7 +5,10 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.views.decorators.cache import cache_page
 
-from models import Post
+from apps.session_messages.helpers import add_message
+
+from forms import AddPostCommentForm
+from models import Post, PostComment
 
 
 def post_list(request):
@@ -36,6 +39,7 @@ def post_detail(request, year, month, slug):
         post = get_object_or_404(Post, created__year=int(year),
             created__month=int(month), slug=slug)
         context = {
+            'comment_form': AddPostCommentForm(),
             'object': post,
         }
         response = render_to_response('blog/post_detail.html', context,
@@ -47,7 +51,7 @@ def post_detail(request, year, month, slug):
 
 def add_comment(request, year, month, slug):
     MESSAGES = {
-        'comments_closed': u"",
+        'comments_closed': u"Sorry, comments are closed for this post.",
     }
 
     post = get_object_or_404(Post, created__year=int(year),
@@ -55,7 +59,8 @@ def add_comment(request, year, month, slug):
     if request.method == 'POST':
         message = None
         if not post.comments_open:
-            message = MESSAGES['comments_closed']
+            add_message(request, MESSAGES['comments_closed'])
+            return HttpResponseRedirect(comment.get_absolute_url())
         else:
             form = AddPostCommentForm(request.POST)
             if form.is_valid():
@@ -66,7 +71,8 @@ def add_comment(request, year, month, slug):
                     copy=form.cleaned_data['copy'],
                 )
                 return HttpResponseRedirect(comment.get_absolute_url())
+        context = {'form': form, 'object': post}
         return render_to_response('blog/add_comment.html', context,
             RequestContext(request))
     else:
-        raise HttpResponseNotAllowed(['POST'])
+        return HttpResponseNotAllowed(['POST'])

@@ -1,24 +1,48 @@
 {% extends "base.html" %}
 
 
-{% load iso typogrify %}
+{% load iso tidy_forms typogrify %}
 
 
-{% block title %}{{ block.super }}—{{ post.headline }}{% endblock %}
+{% block title %}{{ block.super }}—{{ object.headline }}{% endblock %}
 
 
 {% block content %}
 
 	<div class="hentry blogpost">
-		{% with object as post %}
-			<h2><a class="entry-title" rel="bookmark" href="{{ post.get_absolute_url }}">{{ post.headline|typogrify|safe }}</a></h2>
-			<p class="meta"><abbr class="published updated" title="{{ post.created|iso8601 }}">{{ post.created|date:"d/N/Y" }}</abbr></p>
-			<div class="entry-content">
-				{% if post.standfirst %}<p class="standfirst">{{ post.standfirst|safe }}</p>{% endif %}
-				{{ post.copy|typogrify|safe }}
-			</div>
-			<p class="author vcard"><a href="{% url apps.core.views.john %}" class="url"><abbr class="fn" title="John Sutherland">John</abbr></a></p>
-		{% endwith %}
+		<h2><a class="entry-title" rel="bookmark" href="{{ object.get_absolute_url }}">{{ object.headline|typogrify|safe }}</a></h2>
+		<p class="meta"><abbr class="published updated" title="{{ object.created|iso8601 }}">{{ object.created|date:"d/N/Y" }}</abbr></p>
+		<div class="entry-content">
+			{% if object.standfirst %}<p class="standfirst">{{ object.standfirst|safe }}</p>{% endif %}
+			{{ object.copy|typogrify|safe }}
+		</div>
+		<p class="author vcard"><a href="{% url apps.core.views.john %}" class="url"><abbr class="fn" title="John Sutherland">John</abbr></a></p>
 	</div>
+
+	{% if object.postcomment_set.all %}
+		<ol class="comment_list">
+			{% for comment in object.postcomment_set.all %}
+				<li class="comment" id="c{{ comment.pk }}">
+					<h3>{% if comment.author_url %}<a class="author" href="{{ comment.author_url }}">{% else %}<span class="author">{% endif %}{{ comment.author_name }}{% if comment.author_url %}</a>{% else %}</span>{% endif %}, <abbr title="{{ comment.created|iso8601 }}">{{ comment.created|timesince:object.created }} later</abbr>:</h3>
+					<div class="copy">
+						{{ comment.copy|linebreaks }}
+					</div>
+				</li>
+			{% endfor %}
+		</ol>
+	{% endif %}
+
+	{% if object.comments_open %}
+		<form action="{{ object.get_add_comment_url }}" method="post">
+			{% field comment_form.author_name %}
+			{% field comment_form.author_url %}
+			{% field comment_form.copy %}
+			<div class="submit">
+				<button type="submit">Comment</button>
+			</div>
+		</form>
+	{% else %}
+		<p>Sorry, comments are closed for this&nbsp;post.</p>
+	{% endif %}
 
 {% endblock %}

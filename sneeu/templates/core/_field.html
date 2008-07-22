@@ -1,0 +1,13 @@
+<div class="field {{ field_type|lower }}">
+	{% if not field.is_hidden %}
+		<label for="{{ field.auto_id }}">{{ field.label }}</label>
+		{% if field.errors %}
+			<ul class="errors">
+				{% for error in field.errors %}
+					<li>{{ error }}</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+	{% endif %}
+	<div class="input_wrapper">{{ field }}</div>
+</div>

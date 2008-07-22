@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+
+{% load iso tidy_forms typogrify %}
+
+
+{% block title %}{{ block.super }}—{{ object.headline }}—Add comment{% endblock %}
+
+
+{% block content %}
+
+	{% if object.comments_open %}
+		<form action="" method="post">
+			{% field form.author_name %}
+			{% field form.author_url %}
+			{% field form.copy %}
+			<div class="submit">
+				<button type="submit">Comment</button>
+			</div>
+		</form>
+	{% else %}
+		<p>Sorry, comments are closed for this&nbsp;post.</p>
+	{% endif %}
+
+{% endblock %}
