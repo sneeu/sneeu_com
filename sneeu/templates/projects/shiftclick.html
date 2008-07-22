@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+
+{% block title %}{{ block.super }}—shiftclick{% endblock %}
+
+
+{% block extrahead %}
+	<script charset="utf-8" src="{{ media_url }}js/jquery-1.2.3.min.js" type="text/javascript"></script>
+	<script charset="utf-8" src="{{ media_url }}js/jquery.shiftclick.js" type="text/javascript"></script>
+
+	<script type="text/javascript" charset="utf-8">
+		// This will create a ShiftClick set of all the checkboxes on a page.
+		$(function() {
+			$('input[type=checkbox]').shiftClick();
+		});
+	</script>
+{% endblock %}
+
+
+{% block content %}
+	<h2>ShiftClick</h2>
+
+	<p>This is a small demo of the &ldquo;ShiftClick&rdquo; plugin for <a href="http://jquery.com/">jQuery</a>, it&rsquo;s best explained by the demo, click any checkbox then Shift-click another&nbsp;one:</p>
+
+	<ol>
+		<li><label><input type="checkbox" /> One</label></li>
+		<li><label><input type="checkbox" /> Two</label></li>
+		<li><label><input type="checkbox" /> Three</label></li>
+		<li><label><input type="checkbox" /> Four</label></li>
+		<li><label><input type="checkbox" /> Five</label></li>
+		<li><label><input type="checkbox" /> Six</label></li>
+		<li><label><input type="checkbox" /> Seven</label></li>
+		<li><label><input type="checkbox" /> Eight</label></li>
+	</ol>
+
+	<p><a href="{{ media_url }}js/jquery.shiftclick.js">Download it</a>.</p>
+
+	<p>ShiftClick is licensed under a <a href="http://www.openbsd.org/cgi-bin/cvsweb/src/share/misc/license.template?rev=1.2&amp;content-type=text/x-cvsweb-markup" rel="license">BSD License</a>.</p>
+{% endblock %}

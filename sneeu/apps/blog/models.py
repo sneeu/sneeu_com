@@ -16,6 +16,7 @@ class Post(models.Model):
     standfirst = models.CharField(max_length=255, blank=True, null=True)
     copy = models.TextField(blank=True, null=True)
     published = models.BooleanField(default=False)
+    #allow_comments = models.BooleanField(default=True)
 
     class Meta:
         ordering = ('-created', )
@@ -34,7 +35,33 @@ class Post(models.Model):
     @models.permalink
     def get_absolute_url(self):
         return 'post_detail', (), {'year': self.created.year,
-            'month': str(self.created.month).zfill(2), 'slug': self.slug, }
+            'month': self.created.month, 'slug': self.slug, }
+
+    def _get_comments_open(self):
+        expiry = self.created + datetime.timedelta(days=6 * 7)
+        now = datetime.datetime.now()
+        return self.allow_comments and expiry > now
+
+    comments_open = property(_get_comments_open)
+
+
+class PostComment(models.Model):
+    post = models.ForeignKey(Post)
+    created = models.DateTimeField()
+    author_name = models.CharField(max_length=30, verbose_name=u"Name")
+    author_url = models.URLField(verbose_name=u"URL")
+    copy = models.TextField(verbose_name=u"Comment")
+
+    class Meta:
+        ordering = ('post', 'created')
+
+    def save(self):
+        if not self.pk:
+            self.created = datetime.datetime.now()
+        super(PostComment, self).save()
+
+    def get_absolute_url(self):
+        return u'%s#%s' % (self.post.get_absolute_url(), self.pk)
 
 
 class PostAdmin(admin.ModelAdmin):

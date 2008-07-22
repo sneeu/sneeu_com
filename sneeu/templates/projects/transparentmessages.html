@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+{% block title %}{{ block.super }}—transparent messages{% endblock %}
+
+
+{% block extrahead %}
+	<!-- You need to import jQuery and the Transparent Messages plugin scripts -->
+	<script charset="utf-8" src="{{ media_url }}js/jquery-1.2.3.min.js" type="text/javascript"></script>
+	<script charset="utf-8" src="{{ media_url }}js/jquery.transparentmessages.js" type="text/javascript"></script>
+
+	<!-- And then it's pretty simple -->
+	<script type="text/javascript">
+		$(function() {
+			$('.the_demo').click(function() {
+				$.message("Hello, World.");
+				$.message("Messages queue up in the background.");
+				$.message("They stay centered vertically, even during scrolling.");
+				$.message("And they only disappear when you move the mouse.");
+				return false;
+			});
+		});
+	</script>
+{% endblock %}
+
+
+{% block content %}
+	<h2>Transparent Messages</h2>
+
+	<p>This is a small demo of the &ldquo;Transparent Messages&rdquo; plugin for <a href="http://jquery.com/">jQuery</a>, it&rsquo;s best explained by <a class="the_demo" href="#">the demo</a>.</p>
+
+	<p><a href="{{ media_url }}js/jquery.transmessages.js">Download it</a>.</p>
+
+	<p>TransMessages is licensed under a <a href="http://www.openbsd.org/cgi-bin/cvsweb/src/share/misc/license.template?rev=1.2&amp;content-type=text/x-cvsweb-markup" rel="license">BSD License</a>.</p>
+{% endblock %}

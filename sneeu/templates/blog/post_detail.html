@@ -4,6 +4,9 @@
 {% load iso typogrify %}
 
 
+{% block title %}{{ block.super }}—{{ post.headline }}{% endblock %}
+
+
 {% block content %}
 
 	<div class="hentry blogpost">
