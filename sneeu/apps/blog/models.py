@@ -51,7 +51,7 @@ class Post(models.Model):
 
 class PostComment(models.Model):
     post = models.ForeignKey(Post)
-    created = models.DateTimeField()
+    created = models.DateTimeField(blank=True, null=True)
     author_name = models.CharField(max_length=30, verbose_name=u"Name")
     author_url = models.URLField(verbose_name=u"URL", blank=True, null=True)
     copy = models.TextField(verbose_name=u"Comment")

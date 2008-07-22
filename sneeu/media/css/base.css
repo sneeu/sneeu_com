@@ -119,6 +119,9 @@ form .errors {
 	padding: 0;
 	text-align: center;
 }
+.comment_stat {
+	text-align: center;
+}
 .entry-content {
 	text-align: left;
 }
