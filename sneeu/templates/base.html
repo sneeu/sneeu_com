@@ -5,11 +5,13 @@
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>{% block title %}{{ site.name }}{% endblock %}</title>
 
+	{% if keywords %}<meta name="keywords" content="{{ keywords }}" />{% endif %}
+	{% if description %}<meta name="description" content="{{ description }}" />{% endif %}
+	<meta name="viewport" content="width=360" />
+
 	<!--(c) 2003-{% now "Y" %} John Sutherland
 		Powered by Slicehost, Django, memcached, nginx, apache & S3
 		-->
-
-	<meta name="viewport" content="width=320" />
 
 	<link href="{{ media_url }}favicon.ico" rel="shortcut icon" type="image/x-icon" />
 	<link href="{{ media_url }}css/reset.css" media="screen,projection" rel="stylesheet" type="text/css" />

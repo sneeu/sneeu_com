@@ -14,6 +14,8 @@ class Post(models.Model):
     slug = models.SlugField()
     standfirst = models.CharField(max_length=255, blank=True, null=True)
     copy = models.TextField(blank=True, null=True)
+    keywords = models.CharField(max_length=100)
+    description = models.TextField(blank=True, null=True)
     published = models.BooleanField(default=False)
     allow_comments = models.BooleanField(default=True)
 
