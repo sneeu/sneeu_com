@@ -40,6 +40,8 @@ def post_detail(request, year, month, slug):
             created__month=int(month), slug=slug)
         context = {
             'comment_form': AddPostCommentForm(),
+            'keywords': post.keywords,
+            'description': post.description,
             'object': post,
         }
         response = render_to_response('blog/post_detail.html', context,
