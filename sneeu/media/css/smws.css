@@ -5,11 +5,11 @@
 body {
 	background: #fff;
 	color: #444;
-	font: 100%/1.5em "Lucida Grande","Lucida Sans",sans-serif;
+	font: 20px/1.5em Helvetica,Arial,sans-serif;
 	width: 100%;
 }
 h1 {
-	font-size: 1.2em;
+	font-size: 1em;
 	line-height: 1.25em;
 	padding: 0.625em 0;
 }
@@ -23,8 +23,8 @@ table {
 	width: 100%;
 }
 td {
-	line-height: 2em;
-	padding: 0.5em;
+	line-height: 24px;
+	padding: 0.5em 10px;
 }
 .code {
 	text-align: right;
