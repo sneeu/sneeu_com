@@ -4,5 +4,5 @@ import views
 
 
 urlpatterns = patterns('',
-    url(r'^(?P<path>.*)$', views.template_from_path),
+    url(r'^(?P<path>.*)/$', views.template_from_path),
 )

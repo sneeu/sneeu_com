@@ -1,0 +1,54 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	background: #fff;
+	color: #444;
+	font: 100%/1.5em "Lucida Grande","Lucida Sans",sans-serif;
+	width: 100%;
+}
+h1 {
+	font-size: 1.2em;
+	line-height: 1.25em;
+	padding: 0.625em 0;
+}
+p {
+	line-height: 1.5em;
+	margin: 0 0 0.75em;
+	padding: 0 0 0.75em;
+}
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+td {
+	line-height: 2em;
+	padding: 0.5em;
+}
+.code {
+	text-align: right;
+}
+.closed {
+	background: #bbb;
+}
+.dismantled {
+	background: #999;
+}
+.ireland {
+	background: #9f9;
+}
+.japan {
+	background: #f99;
+}
+.maltings {
+	background: #ff9;
+}
+
+h1, .intro {
+	background: #bbb;
+	color: #666;
+	padding-left: 10px;
+	padding-right: 10px;
+	text-shadow: 0 1px 0 #fff;
+}
