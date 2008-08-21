@@ -8,6 +8,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'^admin/(.*)', admin.site.root),
+    (r'^books/', include('apps.ebooks.urls')),
     (r'^', include('apps.blog.urls')),
     (r'^', include('apps.core.urls')),
     (r'^', include('apps.pages.urls')),
