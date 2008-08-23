@@ -1,0 +1,50 @@
+@charset "utf-8";
+
+@import "reset.css";
+
+
+body {
+	background: #fff;
+	color: #333;
+	font: 100%/1.5em Georgia;
+	margin: 3em auto;
+	width: 36em;
+}
+h1 {
+	border-bottom: 1px solid #ddd;
+	font-size: 2em;
+	line-height: 1.5em;
+	margin: -1px 0 0.75em;
+}
+h2 {
+	font-size: 1.25em;
+	line-height: 1.2em;
+	padding: 0.6em 0;
+}
+p,
+ol,
+ul {
+	padding: 0 0 1.5em;
+}
+a {
+	border-bottom: 1px solid;
+	color: #000;
+	padding-bottom: 1px;
+	text-decoration: none;
+}
+a:hover {
+	color: #a12;
+}
+
+.meta {
+	color: #a12;
+	font-style: italic;
+}
+
+#container {
+	width: 36em;
+}
+#footer,
+#footer a {
+	color: #bbb;
+}
