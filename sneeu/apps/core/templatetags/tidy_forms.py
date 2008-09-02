@@ -13,7 +13,6 @@ class FieldNode(Node):
     def render(self, context):
         actual_field = resolve_variable(self.field, context)
         template = get_template('core/_field.html')
-        print dir(actual_field)
         context = Context({
             'field': actual_field,
             'field_type': type(actual_field.field.widget).__name__,

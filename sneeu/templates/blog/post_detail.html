@@ -23,7 +23,7 @@
 		<ol class="comment_list">
 			{% for comment in object.postcomment_set.all %}
 				<li class="comment" id="c{{ comment.pk }}">
-					<h3>{% if comment.author_url %}<a class="author" href="{{ comment.author_url }}">{% else %}<span class="author">{% endif %}{{ comment.author_name }}{% if comment.author_url %}</a>{% else %}</span>{% endif %}, <abbr title="{{ comment.created|iso8601 }}">{{ comment.created|timesince:object.created }} later</abbr>:</h3>
+					<h3>{% if comment.author_url %}<a class="author" href="{{ comment.author_url }}">{% else %}<span class="author">{% endif %}{{ comment.author_name }}{% if comment.author_url %}</a>{% else %}</span>{% endif %}, <abbr title="{{ comment.created|iso8601 }}">{{ object.created|timesince:comment.created }} later</abbr>:</h3>
 					<div class="copy">
 						{{ comment.copy|linebreaks }}
 					</div>
