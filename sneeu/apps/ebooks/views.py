@@ -26,9 +26,11 @@ def book_detail(request, book_slug):
 def chapter_detail(request, book_slug, chapter):
     chapters = Chapter.objects.filter(book__slug=book_slug)
     paginator = Paginator(chapters, 1)
-    chapter = paginator.page(chapter).object_list[0]
+    page = paginator.page(chapter)
+    chapter = page.object_list[0]
     context = {
         'chapter': chapter,
+        'page': page,
         'paginator': paginator,
     }
     return render_to_response('ebooks/chapter_detail.html', context,

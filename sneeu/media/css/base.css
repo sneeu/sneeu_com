@@ -3,20 +3,17 @@
 body {
 	background: #fff;
 	color: #444;
-	font: 100%/1.5em "Georgia","Times New Roman","Times",serif;
-	margin: 3em auto;
-	width: 24em;
-	padding: 0 1.5em;
+	font: 100%/1.5em "Lucida Grande","Lucida Sans",sans-serif;
 }
-a {
-	color: #03f;
+a,
+a:visited {
+	color: #ec972e;
 	text-decoration: none;
 }
-a:visited {
-	color: #60c;
-}
 a:hover {
-	color: #c33;
+	border-bottom: 1px solid;
+	color: #f2bb36;
+	padding-bottom: 1px;
 }
 h1 {
 	color: #999;
@@ -75,21 +72,21 @@ form label {
 form .textinput input {
 	border: 1px solid #bbb;
 	color: #444;
-	font: 100%/1.5em "Georgia","Times New Roman","Times",serif;
+	font: 100%/1.5em "Lucida Grande","Lucida Sans",sans-serif;
 	margin: -2px -1px 1.5em;
 	padding: 0.75em;
 }
 form .textarea textarea {
 	border: 1px solid #bbb;
 	color: #444;
-	font: 100%/1.5em "Georgia","Times New Roman","Times",serif;
+	font: 100%/1.5em "Lucida Grande","Lucida Sans",sans-serif;
 	margin: -2px -1px 1.5em;
 	padding: 0.75em;
 }
 form .submit button {
 	border: 1px solid #bbb;
 	color: #444;
-	font: 100%/1.5em "Georgia","Times New Roman","Times",serif;
+	font: 100%/1.5em "Lucida Grande","Lucida Sans",sans-serif;
 	margin: -2px -1px 1.5em;
 	padding: 0.75em;
 }
@@ -97,7 +94,7 @@ form .submit button:after {
 	content: " »";
 }
 form .errors {
-	color: #c00;
+	color: #e43d24;
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -167,4 +164,37 @@ form .errors {
 .download_vcard a:hover {
 	border: 1px solid #bbb;
 	margin: -1px;
+}
+
+#interest {
+	margin: 3em auto;
+	padding: 0 1.5em;
+	width: 48em;
+}
+#feed {
+	background: #fff;
+	margin-bottom: -1.5em;
+	padding: 0 1.5em;
+}
+#feed a {
+	background: url(../img/rss.png) no-repeat left center;
+	border: 0;
+	color: #fff;
+	display: block;
+	height: 1.5em;
+	margin: 0 auto;
+	padding: 0.75em 0;
+	text-indent: 48px;
+	width: 48em;
+}
+#feed a span {
+	display: none;
+}
+#feed a:hover {
+	color: #ec972e;
+}
+#feed a:hover span {
+	border-bottom: 1px solid;
+	display: inline;
+	padding-bottom: 1px;
 }

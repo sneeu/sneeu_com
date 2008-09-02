@@ -7,6 +7,9 @@
 {% block extrahead %}
 	<link href="http://feeds.feedburner.com/sneeu" rel="alternate" type="application/rss+xml" title="Feed" />
 
+	<meta name="keywords" content="john sutherland,sneeu,python,django,edinburgh,internet,music"/>
+	<meta name="description" content="The website of Edinburgh-based Python developer John Sutherland."/>
+
 	{% if page.has_previous %}<link href="{% ifequal page.previous_page_number 1 %}.{% else %}?page={{ page.previous_page_number }}{% endifequal %}" rel="prev" />{% endif %}
 	{% if page.has_next %}<link href="?page={{ page.next_page_number }}" rel="next" />{% endif %}
 {% endblock %}

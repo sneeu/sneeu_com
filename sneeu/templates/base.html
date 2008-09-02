@@ -7,7 +7,7 @@
 
 	{% if keywords %}<meta name="keywords" content="{{ keywords }}" />{% endif %}
 	{% if description %}<meta name="description" content="{{ description }}" />{% endif %}
-	<meta name="viewport" content="width=360" />
+	<meta name="viewport" content="width=800" />
 
 	<!--(c) 2003-{% now "Y" %} John Sutherland
 		Powered by Slicehost, Django, memcached, nginx, apache & S3
@@ -24,11 +24,17 @@
 </head>
 <body>
 
-	{% block body %}
-	<h1><a href="/">{{ site.name }}</a></h1>
+	<p id="feed">
+		<a href="http://feeds.feedburner.com/sneeu"><span>You might like my RSS feed!</span></a>
+	</p>
 
-	{% block content %}{% endblock %}
-	{% endblock %}
+	<div id="interest">
+		{% block body %}
+			<h1><a href="/">{{ site.name }}</a></h1>
+
+			{% block content %}{% endblock %}
+		{% endblock %}
+	</div>
 
 </body>
 </html>

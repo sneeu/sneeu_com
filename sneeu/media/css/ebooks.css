@@ -7,7 +7,7 @@ body {
 	background: #fff;
 	color: #333;
 	font: 100%/1.5em Georgia;
-	margin: 3em auto;
+	margin: 0 auto;
 	width: 36em;
 }
 h1 {
@@ -42,6 +42,7 @@ a:hover {
 }
 
 #container {
+	padding: 3em 0;
 	width: 36em;
 }
 #footer,
