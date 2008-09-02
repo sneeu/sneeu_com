@@ -16,7 +16,7 @@ class Post(models.Model):
     copy = models.TextField(blank=True, null=True)
     keywords = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
-    published = models.BooleanField(default=False)
+    published = models.BooleanField(default=True)
     allow_comments = models.BooleanField(default=True)
 
     class Meta:
@@ -25,11 +25,11 @@ class Post(models.Model):
     def __unicode__(self):
         return self.headline
 
-    def save(self):
+    def save(self, *args, **kwargs):
         self.updated = datetime.datetime.now()
         if not self.pk:
             self.created = self.updated
-        super(Post, self).save()
+        super(Post, self).save(*args, **kwargs)
         cache.delete(self.get_absolute_url())
         cache.delete('/')
 
@@ -61,10 +61,10 @@ class PostComment(models.Model):
     class Meta:
         ordering = ('post', 'created')
 
-    def save(self):
+    def save(self, *args, **kwargs):
         if not self.pk:
             self.created = datetime.datetime.now()
-        super(PostComment, self).save()
+        super(PostComment, self).save(*args, **kwargs)
         cache.delete(self.post.get_absolute_url())
         cache.delete('/')
 
