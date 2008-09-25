@@ -1,0 +1,6 @@
+[submodule "submodules/django-typogrify"]
+	path = submodules/django-typogrify
+	url = git://github.com/nshah/django-typogrify.git
+[submodule "submodules/django"]
+	path = submodules/django
+	url = git://github.com/brosner/django.git
