@@ -146,7 +146,7 @@ form .errors {
 .frame {
 	text-align: center;
 }
-.frame img {
+.frame a img {
 	border: 1px solid #bbb;
 	padding: 1px;
 }
