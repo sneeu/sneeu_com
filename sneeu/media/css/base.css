@@ -146,9 +146,12 @@ form .errors {
 .frame {
 	text-align: center;
 }
-.frame a img {
+.frame img {
 	border: 1px solid #bbb;
 	padding: 1px;
+}
+.frame .caption {
+	font-style: italic;
 }
 .paginator {
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
