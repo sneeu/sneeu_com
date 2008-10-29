@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<title>blind</title>
+
+	<script src="http://media.sneeu.com/js/jquery-1.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8">
+		function getRecentPhoto(callback) {
+			var url = "http://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=444d065b08119668f2a60521c1730833&extras=date_upload%2C+owner_name&per_page=1&page=1&format=json&jsoncallback=?";
+			$.getJSON(
+				url,
+				function (data) {
+					$.each(data.photos.photo, function(i, photo) {
+						var imageUrl = "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_b.jpg";
+						callback(imageUrl);
+					});
+				}
+			);
+		}
+
+		function getLocalPhoto(lat, lng, callback) {
+			var url = "http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=444d065b08119668f2a60521c1730833&text=e&lat=" + lat + "&lng=" + lng + "&radius=10&per_page=1&page=1&format=json&jsoncallback=?";
+			$.getJSON(
+				url,
+				function (data) {
+					$.each(data.photos.photo, function(i, photo) {
+						var imageUrl = "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_b.jpg";
+						callback(imageUrl);
+					});
+				}
+			);
+		}
+
+		function setPhoto(imageUrl) {
+			console.log($('#image'));
+			$("<img/>").attr("src", imageUrl).appendTo('#image');
+		}
+
+		$(function() {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(function(position) {
+					getLocalPhoto(position.latitude, position.longitude, setPhoto);
+				});
+			} else {
+				getRecentPhoto(setPhoto);
+			}
+		});
+	</script>
+
+	<style type="text/css" media="screen">
+		html, body {
+			height: 100%;
+			margin: 0;
+			overflow: hidden;
+			padding: 0;
+			width: 100%;
+		}
+		img {
+			margin: 0;
+			padding: 0;
+			width: 100%;
+		}
+	</style>
+
+</head>
+<body>
+
+	<div id="image"> </div>
+
+</body>
+</html>
