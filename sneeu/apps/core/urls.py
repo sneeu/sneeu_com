@@ -4,7 +4,6 @@ import views
 
 
 urlpatterns = patterns('',
-    url(r'^john/$', views.john),
     url(r'^404/$', views.four_oh_four),
     url(r'^500/$', views.five_hundred),
 )

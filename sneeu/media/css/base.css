@@ -2,62 +2,43 @@
 
 body {
 	background: #fff;
-	color: #444;
-	font: 100%/1.5em "Lucida Grande","Lucida Sans",sans-serif;
+	color: #0072c6;
+	font: 100%/1.5 "Cambria","Georgia";
+	margin: 0 auto;
+	padding: 2em;
+	width: 1024px;
 }
-a,
-a:visited {
-	color: #ec972e;
-	text-decoration: none;
-}
-a:hover {
-	border-bottom: 1px solid;
-	color: #f2bb36;
-	padding-bottom: 1px;
-}
+
 h1 {
-	color: #999;
-	font-size: 2em;
-	line-height: 1.5em;
-	padding: 0 0 0.75em;
-	text-align: center;
+	float: left;
+}
+h1 a {
+	background: #fff url(../img/logo.png) no-repeat center center;
+	border: 16px solid #fff;
+	float: left;
+	height: 63px;
+	padding: 16px;
+	text-indent: -9999px;
+	width: 146px;
+}
+h1 a:hover {
+	border-color: #ddd;
 }
 h2 {
-	color: #666;
-	font-size: 1.25em;
-	line-height: 1.2em;
-	padding: 1.2em 0;
-	text-align: center;
+	font-size: 2em;
 }
-h3 {
-	font-weight: bold;
-}
-p, ol, ul {
+p {
 	padding: 0 0 1.5em;
 }
-ol {
-	list-style: lower-roman;
+a {
+	background: #ddd;
+	color: #0072c6;
+	margin: 0 -0.15em;
+	padding: 0.15em;
+	-webkit-border-radius: 0.2em;
 }
-ul {
-	list-style: disc;
-}
-blockquote {
-	color: #666;
-	font-style: italic;
-	padding: 0 0 1.5em 3em;
-}
-code {
-	font: 100%/0.1em "Lucida Console","Monaco",monospace;
-}
-q {
-	color: #666;
-	font-style: italic;
-}
-q:before {
-	content: "“";
-}
-q:after {
-	content: "”";
+a:hover {
+	color: #be0026;
 }
 em {
 	font-style: italic;
@@ -66,138 +47,73 @@ strong {
 	font-weight: bold;
 }
 
-form label {
-	display: block;
-}
-form .textinput input {
-	border: 1px solid #bbb;
-	color: #444;
-	font: 100%/1.5em "Lucida Grande","Lucida Sans",sans-serif;
-	margin: -2px -1px 1.5em;
-	padding: 0.75em;
-}
-form .textarea textarea {
-	border: 1px solid #bbb;
-	color: #444;
-	font: 100%/1.5em "Lucida Grande","Lucida Sans",sans-serif;
-	margin: -2px -1px 1.5em;
-	padding: 0.75em;
-}
-form .submit button {
-	border: 1px solid #bbb;
-	color: #444;
-	font: 100%/1.5em "Lucida Grande","Lucida Sans",sans-serif;
-	margin: -2px -1px 1.5em;
-	padding: 0.75em;
-}
-form .submit button:after {
-	content: " »";
-}
-form .errors {
-	color: #e43d24;
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-.caps {
-	font-variant: small-caps;
-	letter-spacing: 0.1em;
-	text-transform: lowercase;
-}
-.hfeed {
-	list-style: none;
-}
-.hentry {
-	padding-bottom: 1.5em;
-}
-.meta {
-	color: #bbb;
-	display: block;
-	font-size: 0.75em;
-	line-height: 2em;
-	margin-top: -2em;
-	padding: 0;
-	text-align: center;
-}
-.comment_stat {
-	text-align: center;
-}
-.entry-content {
-	text-align: left;
-}
-.entry-content .standfirst {
-	font-style: italic;
-}
-.blogpost .author {
-	display: none;
-}
-.comment_list {
-	list-style: none;
-}
-.comment {
-	border-top: 1px solid #bbb;
-	margin-top: -1px;
-	padding-top: 1.5em;
-}
-.comment h3 {
-	color: #999;
-	font-style: italic;
-}
 .frame {
-	text-align: center;
-}
-.frame a img {
-	border: 1px solid #bbb;
-	padding: 1px;
-}
-.frame .caption {
-	font-style: italic;
-}
-.paginator {
-	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-	text-align: center;
-}
-.download_vcard a {
-	background: url(../img/hcard-download.png) no-repeat center center;
-	float: right;
-	height: 3em;
-	text-indent: -9999px;
-	width: 3em;
-}
-.download_vcard a:hover {
-	border: 1px solid #bbb;
-	margin: -1px;
+	border: 0.2em solid #ddd;
+	display: inline-block;
+	line-height: 0;
+	padding: 0.3em;
 }
 
-#interest {
-	margin: 3em auto;
-	padding: 0 1.5em;
-	width: 48em;
+.hfeed .logentry {
+	background-position: 0 0.5em;
+	background-repeat: no-repeat;
+	margin-left: -48px;
+	padding-left: 48px;
+	padding-bottom: 1.5em;
 }
-#feed {
-	background: #fff;
-	margin-bottom: -1.5em;
-	padding: 0 1.5em;
+.hfeed .meta {
+	padding-bottom: 0;
 }
-#feed a {
-	background: url(../img/rss.png) no-repeat left center;
-	border: 0;
-	color: #fff;
-	display: block;
-	height: 1.5em;
-	margin: 0 auto;
-	padding: 0.75em 0;
-	text-indent: 48px;
-	width: 48em;
-}
-#feed a span {
+.hfeed .author {
 	display: none;
 }
-#feed a:hover {
-	color: #ec972e;
+.hfeed .meta {
+	color: #aaa;
+	padding: 0;
 }
-#feed a:hover span {
-	border-bottom: 1px solid;
+
+.brightkite {
+	background-image: url(../img/brightkite.png);
+}
+.twitter {
+	background-image: url(../img/twitter.png);
+}
+.delicious {
+	background-image: url(../img/delicious.png);
+}
+.googlereader {
+	background-image: url(../img/googlereader.png);
+}
+.lastfm {
+	background-image: url(../img/lastfm.png);
+}
+.flickr {
+	background-image: url(../img/flickr.png);
+}
+
+#introduction {
+	border-bottom: 1px dotted #bbb;
+	margin: -1px 0 1.5em;
+	padding-bottom: 1.5em;
+}
+#introduction p {
+	background: #ddd;
 	display: inline;
-	padding-bottom: 1px;
+	font-size: 2em;
+	margin-right: 0.3em;
+	padding: 0;
+}
+#introduction p:after {
+	color: #aaa;
+	content: " ¶";
+}
+#introduction p .amp {
+	font-family: Baskerville,Palatino,"Book Antiqua",serif;
+	font-style: italic;
+}
+
+
+#interest {
+	float: right;
+	width: 752px;
 }

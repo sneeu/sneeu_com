@@ -17,27 +17,33 @@
 
 {% block content %}
 
+	{% if not page_obj.has_previous %}
+		<div id="introduction">
+			<p>Finally, the website <a href="/john/">I've</a> been dreaming about for months—nay years—is finally here. Read about <a href="/colophon/">how it works</a>.</p>
+		</div>
+	{% endif %}
+
 	<ol class="hfeed">
 		{% for log in page_obj.object_list %}
-			<li class="logentry">
+			<li class="logentry {{ log.service.ff_id }}">
 				<h2><a rel="bookmark" href="{{ log.link }}">{{ log.title|typogrify|safe }}</a></h2>
-				<p class="meta"><abbr class="published updated" title="{{ log.published|iso8601 }}">{{ log.published|date:"d/N/Y" }}</abbr></p>
+				<p class="meta"><abbr class="published updated" title="{{ log.published|iso8601 }}">{{ log.published|timesince }} ago</abbr></p>
 				<div class="entry-content">
 					{% if log.media_set.all %}
 						{% for media in log.media_set.all %}
-							<p>[Media]</p>
+							<div class="frame"><img src="{{ media.url }}" /></div>
 						{% endfor %}
 					{% endif %}
 				</div>
-				<p class="author vcard"><a href="{% url apps.core.views.john %}" class="url"><abbr class="fn" title="John Sutherland">John</abbr></a></p>
+				<p class="author vcard"><a href="/john/" class="url"><abbr class="fn" title="John Sutherland">John</abbr></a></p>
 			</li>
 		{% endfor %}
 	</ol>
 
 	{% if page_obj.has_next or page_obj.has_previous %}
 		<p class="paginator">
-			{% if page_obj.has_previous %}<a class="previous" href="{% ifequal page_obj.previous_page_number 1 %}.{% else %}?page={{ page_obj.previous_page_number }}{% endifequal %}" rel="prev" title="Newer">&larr;</a>{% endif %}
-			{% if page_obj.has_next %}<a class="next" href="?page={{ page_obj.next_page_number }}" rel="next" title="Older">&rarr;</a>{% endif %}
+			{% if page_obj.has_previous %}<a class="previous" href="{% ifequal page_obj.previous_page_number 1 %}.{% else %}?page={{ page_obj.previous_page_number }}{% endifequal %}" rel="prev" title="Newer">&larr;Newer </a>{% endif %}
+			{% if page_obj.has_next %}<a class="next" href="?page={{ page_obj.next_page_number }}" rel="next" title="Older">Older &rarr;</a>{% endif %}
 		</p>
 	{% endif %}
 

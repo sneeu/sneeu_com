@@ -29,8 +29,8 @@
 						{{ post.copy|typogrify|safe }}
 					{% endif %}
 				</div>
-				<p class="author vcard"><a href="{% url apps.core.views.john %}" class="url"><abbr class="fn" title="John Sutherland">John</abbr></a></p>
-				<p class="comment_stat">{% if post.comments_open %}(<a href="{{ post.get_absolute_url }}"><abbr title="{{ post.postcomment_set.all|length }} comments">{{ post.postcomment_set.all|length }}</abbr></a>){% else %}<abbr title="Comments are closed">—</abbr>{% endif %}</p>
+				<p class="author vcard"><a href="/{{ post.author.username }}/" class="url"><abbr class="fn" title="{{ post.author.get_full_name }}">{{ post.author.first_name }}</abbr></a></p>
+				{#<p class="comment_stat">{% if post.comments_open %}(<a href="{{ post.get_absolute_url }}"><abbr title="{{ post.postcomment_set.all|length }} comments">{{ post.postcomment_set.all|length }}</abbr></a>){% else %}<abbr title="Comments are closed">—</abbr>{% endif %}</p>#}
 			</li>
 		{% endfor %}
 	</ol>

@@ -16,7 +16,7 @@
 			{% if object.standfirst %}<p class="standfirst">{{ object.standfirst|safe }}</p>{% endif %}
 			{{ object.copy|typogrify|safe }}
 		</div>
-		<p class="author vcard"><a href="{% url apps.core.views.john %}" class="url"><abbr class="fn" title="John Sutherland">John</abbr></a></p>
+				<p class="author vcard"><a href="/{{ post.author.username }}/" class="url"><abbr class="fn" title="{{ post.author.get_full_name }}">{{ post.author.first_name }}</abbr></a></p>
 	</div>
 
 	{% if object.postcomment_set.all %}
@@ -32,6 +32,7 @@
 		</ol>
 	{% endif %}
 
+{% comment %}
 	{% if object.comments_open %}
 		<form action="{{ object.get_add_comment_url }}" method="post">
 			<p>Add your comment, URL is not&nbsp;required.</p>
@@ -45,5 +46,6 @@
 	{% else %}
 		<p>Sorry, comments are closed for this&nbsp;post.</p>
 	{% endif %}
+{% endcomment %}
 
 {% endblock %}
