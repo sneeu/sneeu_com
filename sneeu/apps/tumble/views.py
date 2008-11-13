@@ -1,7 +1,10 @@
-import friendfeed
 import pprint
+import StringIO
 
 from django.http import HttpResponse
+from django.shortcuts import render_to_response
+
+import friendfeed
 
 from models import Service, Log, Media
 
@@ -10,8 +13,12 @@ def update(request):
     FF_USERNAME = u'sneeu'
 
     ff = friendfeed.FriendFeed()
+    data = ff.fetch_user_feed(FF_USERNAME)
     n = 0
-    for entry in ff.fetch_user_feed(FF_USERNAME)['entries']:
+
+    pp = pprint.PrettyPrinter(indent=4)
+
+    for entry in data['entries']:
         service, __ = Service.objects.get_or_create(
             ff_id=entry['service']['id'],
             defaults={
@@ -36,12 +43,15 @@ def update(request):
                         'published': entry['published'],
                     })
 
-                media, created = Media.objects.get_or_create(
-                    url=entry_media['content'][0]['url'],
-                    defaults={'log': log}
-                    )
-                if created:
-                    n += 1
+                for content in entry_media['content'] + entry_media['thumbnails']:
+                    if content['width'] < 500:
+                        media, created = Media.objects.get_or_create(
+                            url=content['url'],
+                            defaults={'log': log}
+                            )
+                        if created:
+                            n += 1
+                        break
         else:
             entry_comment = None
             for comment in entry['comments']:
@@ -60,4 +70,7 @@ def update(request):
             if created:
                 n += 1
 
-    return HttpResponse('%d' % n)
+    log = StringIO.StringIO()
+    pprint.pprint(data, log)
+
+    return render_to_response('tumble/update.html', {'log': log.getvalue(), 'updated': n})

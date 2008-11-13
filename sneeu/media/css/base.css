@@ -64,6 +64,9 @@ strong {
 .hfeed .meta {
 	padding-bottom: 0;
 }
+.hfeed .logentry .comment {
+	padding-bottom: 0;
+}
 .hfeed .author {
 	display: none;
 }

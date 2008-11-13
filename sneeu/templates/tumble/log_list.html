@@ -34,6 +34,9 @@
 							<div class="frame"><img src="{{ media.url }}" /></div>
 						{% endfor %}
 					{% endif %}
+					{% if log.comment %}
+						<p class="comment">{{ log.comment }}</p>
+					{% endif %}
 				</div>
 				<p class="author vcard"><a href="/john/" class="url"><abbr class="fn" title="John Sutherland">John</abbr></a></p>
 			</li>
