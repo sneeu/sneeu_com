@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>delicious</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8">
+		jQuery.fn.sort = function() { 
+			return this.pushStack(jQuery.makeArray([].sort.apply(this, arguments)));
+		};
+
+		var USERS = ['allyburns', 'mjr', 'rougebert', 'sneeu'];
+		var TAG = 'web+bestpractice';
+
+		var DELICIOUS = {
+			_callbackCount: 0,
+			_addUser: function (user) {
+				return function (data) {
+					for (var i = 0; i < data.length; i++) {
+						var mark = data[i];
+						jQuery('#bookmarks').append('<li title="' + mark.dt + '"><a href="' + mark.u + '">' + mark.d + '</a> [' + user + ']</li>');
+					}
+					DELICIOUS._callbackCount++;
+					if (DELICIOUS._callbackCount >= USERS.length) {
+						var sorted = $('#bookmarks li').sort(function (ea, eb) {
+							var a = jQuery(ea).attr('title');
+							var b = jQuery(eb).attr('title');
+							if (a < b) return 1;
+							return -1
+						});
+						$('#bookmarks').empty().append(sorted);
+					}
+				}
+			}
+		};
+
+		(function ($) {
+			$(function () {
+				for (var i = 0; i < USERS.length; i++) {
+					var callback = 'addUser' + USERS[i];
+					DELICIOUS[callback] = DELICIOUS._addUser(USERS[i]);
+
+					var url = 'http://feeds.delicious.com/v2/json/' + USERS[i] + '/' + TAG + '?callback=DELICIOUS.' + callback;
+					$('<scr' + 'ipt src="' + url + '" type="text/javascript"></scr' + 'ipt>').appendTo('head');
+				}
+				$('article > section > header').text(TAG);
+				document.title = TAG;
+			});
+		})(jQuery);
+	</script>
+
+	<style type="text/css" media="screen">
+		*{margin:0;padding:0}
+		body {
+			font: 69%/1.6em "Lucida Grande",Verdana,Arial,Helvetica,Sans-serif;
+			margin: 3em auto;
+			width: 48em;
+		}
+		section header {
+			border-bottom: 1px solid #eaecdf;
+			display: block;
+			font-size: 1.5em;
+			line-height: 1.067em;
+			margin-bottom: -1px;
+			padding: 0.533em 0;
+		}
+		ol {
+			padding: 0.8em 0;
+		}
+		ol li {
+			font-size: 1em;
+			list-style: none;
+			padding: 0 0 0.4em;
+		}
+		a {
+			border-bottom: 1px solid;
+			color: #003950;
+			padding-bottom: 1px;
+			text-decoration: none;
+		}
+		a:hover {
+			background: #eaecdf;
+		}
+	</style>
+
+</head>
+<body>
+
+	<article>
+		<section>
+			<header>delicious</header>
+			<ol id="bookmarks"></ol>
+		</section>
+	</article>
+
+</body>
+</html>
+
